@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f $1/package.json ]; then
+nodes=$(find `pwd` -name package.json)
+narray=( `echo $nodes` )
+if [ "x${narray[0]}" != "x" ]; then
   echo "Node.js" && exit 0
 else
   echo "no" && exit 1
