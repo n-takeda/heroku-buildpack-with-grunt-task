@@ -134,7 +134,7 @@ rm -rf "$build_dir/.npm"
 
 # Check and run Grunt
 (
-  grunts=$(find `pwd` -name Gruntfile.js -o -name grunt.js -o -name Gruntfile.coffee)
+  grunts=$(find `pwd` -path `pwd`/node_modules -prune -o -name Gruntfile.js -print -o -name grunt.js -print -o -name Gruntfile.coffee -print)
   garray=( `echo $grunts` )
   if [ "x${garray[0]}" != "x" ]; then
     # get the env vars
