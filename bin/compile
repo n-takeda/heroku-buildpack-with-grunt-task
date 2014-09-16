@@ -152,7 +152,7 @@ rm -rf "$build_dir/.npm"
       dir=`dirname $g`
       pushd $dir > /dev/null
       npm install
-      echo "-----> Found Gruntfile, running grunt heroku:$NODE_ENV task"
+      echo "-----> Found Gruntfile, running grunt heroku:$NODE_ENV task by ${g}"
       $build_dir/node_modules/.bin/grunt heroku:$NODE_ENV
       popd > /dev/null
     done
