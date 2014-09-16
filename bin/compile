@@ -194,4 +194,9 @@ fi
 ### Add by shunjikonishi
 status "Removing node related files"
 rm -rf node_modules
+if [ "x${garray[0]}" != "x" ]; then
+  for g in ${garray[@]}; do
+    rm -rf `dirname $g`/node_modules
+  done
+fi
 rm -rf vendor
