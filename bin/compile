@@ -21,9 +21,11 @@ trap cat_npm_debug_log ERR
 nodes=$(find $build_dir -name package.json)
 narray=( `echo $nodes` )
 semver_range=$(cat ${narray[0]} | $bp_dir/vendor/jq -r .engines.node)
+echo "-----> semver_range=${semver_range}"
 
 # Resolve node version using semver.io
 node_version=$(curl --silent --get --data-urlencode "range=${semver_range}" https://semver.io/node/resolve)
+echo "-----> node_version=${node_version}"
 
 # Recommend using semver ranges in a safe manner
 if [ "$semver_range" == "null" ]; then
