@@ -144,14 +144,6 @@ rm -rf "$build_dir/.npm"
     fi
 
     # make sure that grunt and grunt-cli are installed locally
-		## begin debug
-		echo '-----------------------------------------------------------DEBUG OUT BEGIN'
-		echo "ls -l ${build_dir}/node_modules/.bin/grunt"
-		ls -l ${build_dir}/node_modules/.bin/grunt
-		#echo "rm -f ${build_dir}/node_modules/.bin/grunt"
-    #rm -f ${build_dir}/node_modules/.bin/grunt
-		echo '-----------------------------------------------------------DEBUG OUT END'
-		## end debug
     npm install grunt-cli
     npm install grunt
     
