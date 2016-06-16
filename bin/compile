@@ -2,7 +2,7 @@
 
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
-# set -x          # enable debugging
+set -x          # enable debugging
 
 # Configure directories
 build_dir=$1
@@ -144,7 +144,18 @@ rm -rf "$build_dir/.npm"
     fi
 
     # make sure that grunt and grunt-cli are installed locally
-    npm install grunt-cli
+		## begin debug
+		echo '-----------------------------------------------------------DEBUG OUT BEGIN'
+		echo '--- before npm install grunt-cli'
+		echo '-------------------env'
+		echo `env`
+		echo '-------------------build_dir'
+		echo "${build_dir}"
+		echo '-------------------find type f build_dir'
+		find "${build_dir}" -type f
+		echo '-----------------------------------------------------------DEBUG OUT END'
+		## end debug
+    npm install grunt-cli --verbose
     npm install grunt
     
     # execute "npm install" and "grunt heroku" task
