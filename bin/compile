@@ -146,13 +146,9 @@ rm -rf "$build_dir/.npm"
     # make sure that grunt and grunt-cli are installed locally
 		## begin debug
 		echo '-----------------------------------------------------------DEBUG OUT BEGIN'
-		echo '--- before npm install grunt-cli'
-		echo '-------------------env'
-		echo `env`
-		echo '-------------------build_dir'
-		echo "${build_dir}"
-		echo '-------------------find type f build_dir'
-		find "${build_dir}" -type f -name "
+		echo "ls -l ${build_dir}/node_modules/.bin/grunt"
+		echo "rm -f ${build_dir}/node_modules/.bin/grunt"
+    rm -f ${build_dir}/node_modules/.bin/grunt
 		echo '-----------------------------------------------------------DEBUG OUT END'
 		## end debug
     npm install grunt-cli --verbose
