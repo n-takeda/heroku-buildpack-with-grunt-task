@@ -63,19 +63,19 @@ if test -d $build_dir/node_modules; then
   status "Found existing node_modules directory; skipping cache"
   status "Rebuilding any native dependencies"
   npm rebuild 2>&1 | indent
-elif test -d $cache_dir/node/node_modules; then
-  status "Restoring node_modules directory from cache"
-  cp -r $cache_dir/node/node_modules $build_dir/
-
-  if test -f $build_dir/package.json; then
-    status "Pruning cached dependencies not specified in package.json"
-    npm prune 2>&1 | indent
-  fi
-
-  if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
-    status "Node version changed since last build; rebuilding dependencies"
-    npm rebuild 2>&1 | indent
-  fi
+#elif test -d $cache_dir/node/node_modules; then
+#  status "Restoring node_modules directory from cache"
+#  cp -r $cache_dir/node/node_modules $build_dir/
+#
+#  if test -f $build_dir/package.json; then
+#    status "Pruning cached dependencies not specified in package.json"
+#    npm prune 2>&1 | indent
+#  fi
+#
+#  if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
+#    status "Node version changed since last build; rebuilding dependencies"
+#    npm rebuild 2>&1 | indent
+#  fi
 fi
 
 ### Comment out by shunjikonishi
@@ -147,11 +147,12 @@ rm -rf "$build_dir/.npm"
 		## begin debug
 		echo '-----------------------------------------------------------DEBUG OUT BEGIN'
 		echo "ls -l ${build_dir}/node_modules/.bin/grunt"
-		echo "rm -f ${build_dir}/node_modules/.bin/grunt"
-    rm -f ${build_dir}/node_modules/.bin/grunt
+		ls -l ${build_dir}/node_modules/.bin/grunt
+		#echo "rm -f ${build_dir}/node_modules/.bin/grunt"
+    #rm -f ${build_dir}/node_modules/.bin/grunt
 		echo '-----------------------------------------------------------DEBUG OUT END'
 		## end debug
-    npm install grunt-cli --verbose
+    npm install grunt-cli
     npm install grunt
     
     # execute "npm install" and "grunt heroku" task
